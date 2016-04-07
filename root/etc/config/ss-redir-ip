@@ -1,0 +1,33 @@
+
+config redirection 'ip6s'
+	option hostip '192.168.1.151'
+	option protocol 'tcp'
+	option ipsetname 'gfwlist'
+	option toport '1080'
+	option matchipset '0'
+	option enabled '1'
+
+config redirection 'ipadair2'
+	option matchipset '0'
+	option enabled '1'
+	option hostip '192.168.1.152'
+	option protocol 'tcp'
+	option ipsetname 'gfwlist'
+	option toport '1080'
+
+config redirection 'ps4tcp'
+	option matchipset '0'
+	option enabled '1'
+	option hostip '192.168.1.153'
+	option toport '1080'
+	option protocol 'tcp'
+	option ipsetname 'gfwlist'
+
+config redirection 'ps4udp'
+	option matchipset '0'
+	option hostip '192.168.1.153'
+	option protocol 'udp'
+	option toport '1080'
+	option ipsetname 'null'
+	option enabled '0'
+

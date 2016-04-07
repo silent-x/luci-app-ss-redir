@@ -12,10 +12,14 @@ redir() {
 
 
 	if [ "$enabled" = 1 ]; then
-		if [ "$matchipset" = 1 ]; then
-			iptables -t nat -A PREROUTING -p $protocol -s $hostip/32 -m set --match-set $ipsetname dst -j REDIRECT --to-port $toport
+		if [ "$ipsetname" = 'null' ]; then
+			iptables -t nat -A PREROUTING -p $protocol -s $hostip/32 -j REDIRECT --to-port $toport
 		else
-			iptables -t nat -A PREROUTING -p $protocol -s $hostip/32 -m set ! --match-set $ipsetname dst -j REDIRECT --to-port $toport
+            if [ "$matchipset" = 1 ]; then
+                iptables -t nat -A PREROUTING -p $protocol -s $hostip/32 -m set --match-set $ipsetname dst -j REDIRECT --to-port $toport
+            else
+                iptables -t nat -A PREROUTING -p $protocol -s $hostip/32 -m set ! --match-set $ipsetname dst -j REDIRECT --to-port $toport
+            fi
 		fi
 		
 	fi
