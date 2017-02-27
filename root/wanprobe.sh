@@ -12,6 +12,6 @@ then
                 echo restarting noip2!
                 killall noip2
                 sleep 5
-                /usr/noip/noip2 -c /usr/noip/noip2.conf
+                /root/noip/noip2 -c /root/noip/noip2.conf
         fi
 fi

@@ -22,7 +22,8 @@ lineCount=`cat /etc/chinadns_chnroute.txt | wc -l`
 lastUpdateTime=`stat -c %Y /etc/chinadns_chnroute.txt`
 nowTime=`date +%s`
 
-if [ $lineCount -eq 0  ] || [ $(( $nowTime - $lastUpdateTime )) -gt 86400 ]; then
+#if [ $lineCount -eq 0  ] || [ $(( $nowTime - $lastUpdateTime )) -gt 86400 ]; then
+if [ $lineCount -eq 0  ]; then
         wget -O- 'http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest' | awk -F\| '/CN\|ipv4/ { printf("%s/%d\n", $4, 32-log($5)/log(2)) }' > /etc/chinadns_chnroute.txt
 fi
 
